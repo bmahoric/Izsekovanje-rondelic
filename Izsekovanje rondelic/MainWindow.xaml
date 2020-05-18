@@ -7,6 +7,17 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        
+        <TextBox x:Name="Width" HorizontalAlignment="Left" Height="23" Margin="101,51,0,0" TextWrapping="Wrap" Text="Širina" VerticalAlignment="Top" Width="171"/>
+        <TextBox x:Name="Length" HorizontalAlignment="Left" Height="23" Margin="101,79,0,0" TextWrapping="Wrap" Text="Dolžina" VerticalAlignment="Top" Width="171" TextChanged="Length_TextChanged"/>
+        <TextBox x:Name="xDistance" HorizontalAlignment="Left" Height="23" Margin="101,107,0,0" TextWrapping="Wrap" Text="Odmik na začetku/koncu" VerticalAlignment="Top" Width="171"/>
+        <TextBox x:Name="txt_yDistance" HorizontalAlignment="Left" Height="23" Margin="101,135,0,0" TextWrapping="Wrap" Text="Odmik na Y osi" VerticalAlignment="Top" Width="171"/>
+        <TextBox x:Name="tb_Area" HorizontalAlignment="Left" Height="23" Margin="101,314,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="171"/>
+        <TextBox x:Name="tb_netArea" HorizontalAlignment="Left" Height="23" Margin="101,360,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="171"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="101,263,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <TextBox x:Name="tb_Temp" HorizontalAlignment="Left" Height="23" Margin="435,314,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="191"/>
+        <TextBox x:Name="tb_R" HorizontalAlignment="Left" Height="23" Margin="101,181,0,0" TextWrapping="Wrap" Text="Polmer" VerticalAlignment="Top" Width="171"/>
+        <TextBox x:Name="tb_CircleDistance" HorizontalAlignment="Left" Height="23" Margin="101,209,0,0" TextWrapping="Wrap" Text="Razdalja" VerticalAlignment="Top" Width="171"/>
+        <TextBox x:Name="tb_Temp2" HorizontalAlignment="Left" Height="23" Margin="435,346,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="191"/>
+        <TextBox x:Name="tb_Temp3" HorizontalAlignment="Left" Height="23" Margin="435,374,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="191"/>
     </Grid>
 </Window>
