@@ -30,38 +30,6 @@ namespace Izsekovanje_rondelic
             return (noOfEvenRows * noOfRoundsInEvenRows) + (noOfOddRows * noOfRoundsInOddRows);
         }
 
-        public string[,] GetRoundLocations(Tape trak)
-        {
-            noOfRoundsInOddRows = CalcRoundsInCols(trak, true);
-            noOfRoundsInEvenRows = CalcRoundsInCols(trak, false);
-            noOfRows = CalcNoOfRows(trak);
-
-            int noOfEvenRows = noOfRows / 2;
-            int noOfOddRows = (noOfRows % 2) + noOfEvenRows;
-
-            int b = CalcYDistanceOfEvenRows();
-
-            string[,] rounds = new string[noOfRoundsInOddRows,noOfRows];
-
-            for (int x=0;x<noOfRoundsInOddRows; x++)
-            {
-                for (int y=0;y<noOfRows;y++)
-                {
-                    // TODO: odstraniti distanco za kroge prvega stolpca oz. vrstice
-                    if (x>0 & y>0)
-                        rounds[x,y] = (trak.xDistance + (r * (x + 1) + distance)).ToString()+" "+(trak.yDistance + r + (b * (y + 1))).ToString();
-                    else if (x==0 & y>0)
-                        rounds[x, y] = (trak.xDistance + (r * (x + 1))).ToString()+" "+(trak.yDistance + r + (b * (y + 1))).ToString();
-                    else if (y==0 & x>0)
-                        rounds[x, y] = (trak.xDistance + (r * (x + 1) + distance)).ToString()+" "+(trak.yDistance + r).ToString();
-                    else
-                        rounds[x, y] = (trak.xDistance + (r * (x + 1))).ToString()+" "+(trak.yDistance + r).ToString();
-                }
-            }
-
-            return rounds;
-        }
-
         public string PrintRoundLocations(Tape trak)
         {
             noOfRoundsInOddRows = CalcRoundsInCols(trak, true);
