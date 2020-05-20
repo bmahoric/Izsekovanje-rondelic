@@ -5,19 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Izsekovanje_rondelic"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <TextBox x:Name="Width" HorizontalAlignment="Left" Height="23" Margin="101,51,0,0" TextWrapping="Wrap" Text="Širina" VerticalAlignment="Top" Width="171"/>
-        <TextBox x:Name="Length" HorizontalAlignment="Left" Height="23" Margin="101,79,0,0" TextWrapping="Wrap" Text="Dolžina" VerticalAlignment="Top" Width="171" TextChanged="Length_TextChanged"/>
-        <TextBox x:Name="xDistance" HorizontalAlignment="Left" Height="23" Margin="101,107,0,0" TextWrapping="Wrap" Text="Odmik na začetku/koncu" VerticalAlignment="Top" Width="171"/>
-        <TextBox x:Name="txt_yDistance" HorizontalAlignment="Left" Height="23" Margin="101,135,0,0" TextWrapping="Wrap" Text="Odmik na Y osi" VerticalAlignment="Top" Width="171"/>
-        <TextBox x:Name="tb_Area" HorizontalAlignment="Left" Height="23" Margin="101,314,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="171"/>
-        <TextBox x:Name="tb_netArea" HorizontalAlignment="Left" Height="23" Margin="101,360,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="171"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="101,263,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
-        <TextBox x:Name="tb_Temp" HorizontalAlignment="Left" Height="23" Margin="435,314,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="191"/>
-        <TextBox x:Name="tb_R" HorizontalAlignment="Left" Height="23" Margin="101,181,0,0" TextWrapping="Wrap" Text="Polmer" VerticalAlignment="Top" Width="171"/>
-        <TextBox x:Name="tb_CircleDistance" HorizontalAlignment="Left" Height="23" Margin="101,209,0,0" TextWrapping="Wrap" Text="Razdalja" VerticalAlignment="Top" Width="171"/>
-        <TextBox x:Name="tb_Temp2" HorizontalAlignment="Left" Height="23" Margin="435,346,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="191"/>
-        <TextBox x:Name="tb_Temp3" HorizontalAlignment="Left" Height="23" Margin="435,374,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="191"/>
+        Title="Izdelava rondelic - prototip aplikacije za razpis za programerja" Height="{Binding ElementName=grid1, Path=Height}" Width="965.714" WindowStartupLocation="CenterScreen">
+    <Grid x:Name="grid1">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="800.8"/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="tb_Area" HorizontalAlignment="Left" Height="23" Margin="326,436,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="171"/>
+        <TextBox x:Name="tb_netArea" HorizontalAlignment="Left" Height="23" Margin="557,436,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="171"/>
+        <Button x:Name="button_Calculate" Content="Izračunaj" HorizontalAlignment="Left" Margin="34,394,0,0" VerticalAlignment="Top" Click="Button_Click" Width="70" Height="26"/>
+        <GroupBox Header="Podatki o traku - v mm" HorizontalAlignment="Left" Height="235" Margin="10,10,0,0" VerticalAlignment="Top" Width="268">
+            <StackPanel Margin="10,10,0.4,0.4" >
+                <Label Content="Dolžina" Target="{Binding ElementName=tb_Length}"/>
+                <TextBox x:Name="tb_Length" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" TextChanged="Length_TextChanged" Margin="10,0,0,0"/>
+                <Label Content="Širina" Target="{Binding ElementName=tb_Width}"/>
+                <TextBox x:Name="tb_Width" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Margin="10,0,0,0"  Text="{Binding Path=width, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                <Label Content="Odmik robov po dolžini" Target="{Binding ElementName=tb_xDistance}"/>
+                <TextBox x:Name="tb_xDistance" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Margin="10,0,0,0"/>
+                <Label Content="Odmik robov po širini" Target="{Binding ElementName=tb_yDistance}"/>
+                <TextBox x:Name="tb_yDistance" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="216" Margin="10,0,0,0"/>
+
+            </StackPanel>
+        </GroupBox>
+        <GroupBox Header="Podatki o rondelicah - v mm" HorizontalAlignment="Left" Height="132" Margin="10,250,0,0" VerticalAlignment="Top" Width="268">
+            <StackPanel Margin="10,10,0.4,0.4" >
+                <Label Content="Polmer" Target="{Binding ElementName=tb_R}"/>
+                <TextBox x:Name="tb_R" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Margin="10,0,0,0"/>
+                <Label Content="Medsebojna razdalja" Target="{Binding ElementName=tb_xDistance}"/>
+                <TextBox x:Name="tb_CircleDistance" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Margin="10,0,0,0"/>
+            </StackPanel>
+        </GroupBox>
+        <StackPanel HorizontalAlignment="Left" Height="408" Margin="394,28,-147.4,0" VerticalAlignment="Top" Width="555">
+            <Label Content="Število rondelic:" Margin="0,0,210.6,0"/>
+            <TextBox x:Name="tb_Result" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="181" Margin="10,0,0,0" Focusable="False"/>
+            <Label Content="Koordinate rondelic - X,Y os:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="171"/>
+            <TextBlock x:Name="textblock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="331" Width="545" Margin="10,0,0,0"/>
+        </StackPanel>
+
     </Grid>
 </Window>

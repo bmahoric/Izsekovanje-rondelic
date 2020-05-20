@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Navigation;
+
 
 namespace Izsekovanje_rondelic
 {
@@ -12,34 +14,36 @@ namespace Izsekovanje_rondelic
     {
         public int r { get; set; }
         public int distance { get; set; }
-
+        private int noOfRoundsInOddRows { get; set; }
+        private int noOfRoundsInEvenRows { get; set; }
+        private int noOfRows { get; set; }
+        
         public int GetNoOfRounds(Tape trak)
         {
-            int noOfRoundsInOddCols = CalcRoundsInRows(trak, true);
-            int noOfRoundsInEvenCols = CalcRoundsInRows(trak, false);
-            int noOfRows = CalcNoOfRows(trak);
+            noOfRoundsInOddRows = CalcRoundsInCols(trak, true);
+            noOfRoundsInEvenRows = CalcRoundsInCols(trak, false);
+            noOfRows = CalcNoOfRows(trak);
 
             int noOfEvenRows = noOfRows / 2;
             int noOfOddRows = (noOfRows % 2) + noOfEvenRows; 
 
-            return (noOfEvenRows * noOfRoundsInEvenCols) + (noOfOddRows * noOfRoundsInOddCols);
+            return (noOfEvenRows * noOfRoundsInEvenRows) + (noOfOddRows * noOfRoundsInOddRows);
         }
 
         public string[,] GetRoundLocations(Tape trak)
         {
-            int noOfRoundsInOddCols = CalcRoundsInRows(trak, true);
-            int noOfRoundsInEvenCols = CalcRoundsInRows(trak, false);
-            int noOfRows = CalcNoOfRows(trak);
+            noOfRoundsInOddRows = CalcRoundsInCols(trak, true);
+            noOfRoundsInEvenRows = CalcRoundsInCols(trak, false);
+            noOfRows = CalcNoOfRows(trak);
 
-            int noOfEvenCols = noOfRows / 2;
-            int noOfOddCols = (noOfRows % 2) + noOfEvenCols;
+            int noOfEvenRows = noOfRows / 2;
+            int noOfOddRows = (noOfRows % 2) + noOfEvenRows;
 
-            int noOfCols = noOfEvenCols + noOfOddCols;
             int b = CalcYDistanceOfEvenRows();
 
-            string[,] rounds = new string[noOfCols,noOfRows];
+            string[,] rounds = new string[noOfRoundsInOddRows,noOfRows];
 
-            for (int x=0;x<noOfCols;x++)
+            for (int x=0;x<noOfRoundsInOddRows; x++)
             {
                 for (int y=0;y<noOfRows;y++)
                 {
@@ -58,17 +62,69 @@ namespace Izsekovanje_rondelic
             return rounds;
         }
 
+        public string PrintRoundLocations(Tape trak)
+        {
+            noOfRoundsInOddRows = CalcRoundsInCols(trak, true);
+            noOfRoundsInEvenRows = CalcRoundsInCols(trak, false);
+            noOfRows = CalcNoOfRows(trak);
+
+            int noOfEvenRows = noOfRows / 2;
+            int noOfOddRows = (noOfRows % 2) + noOfEvenRows;
+            int kateta = CalcYDistanceOfEvenRows();
+            string rounds = "";
+
+            for (int a=0; a<noOfRows; a++)
+            {
+                if ((a+1) % 2 == 1)
+                {
+                    for (int b=0; b<noOfRoundsInOddRows; b++)
+                    {
+                        // kordinate za X os
+                        if (b == 0)
+                            rounds += (trak.xDistance + r).ToString();
+                        else
+                            rounds += (trak.xDistance + r + (2 * r + distance) * b).ToString();
+                        rounds += ",";
+
+                        // doda koordinate za Y os
+                        if (a == 0)
+                            rounds += (trak.yDistance + r);
+                        else
+                            rounds += (trak.yDistance + r + (kateta * a)).ToString();
+                        rounds += "  ";
+                    }
+                }
+                else
+                {
+                    for (int b=0; b<noOfRoundsInEvenRows; b++)
+                    {
+                        rounds += "  ";
+                        if (b == 0)
+                            rounds += Convert.ToInt32(trak.xDistance + (2 * r) + (distance / 2)).ToString();  // TODO kako zaokrožiti double?
+                        else
+                            rounds += Convert.ToInt32(trak.xDistance + r + ((2 * r) + (distance / 2) * b)).ToString();
+                        rounds += ",";
+
+                        rounds += (trak.yDistance + r + kateta * a);
+                        rounds += "  ";
+                    }
+                }
+                rounds += Environment.NewLine + Environment.NewLine;
+            }
+            return rounds;
+        }
+
         /*
          * Prešteje število rondelic v vrsticah - sodih oz. lihih
          */
-        private int CalcRoundsInRows(Tape trak, bool isOdd)
+        private int CalcRoundsInCols(Tape trak, bool isOdd)
         {
-            int noOfCols;
+            int noOfRounds;
 
             if (isOdd)
-                return noOfCols = (trak.NetLength()+distance) / (r * 2 + distance);
+                return noOfRounds = (trak.NetLength()+distance) / (r * 2 + distance);
             else
-                return noOfCols = (trak.NetLength() - (r * 2) + (distance / 2)) / (r * 2 + distance);
+                return noOfRounds = (trak.NetLength() - (r * 2) + (distance / 2)) / (r * 2 + distance);
         }
 
         private int CalcNoOfRows(Tape trak)
