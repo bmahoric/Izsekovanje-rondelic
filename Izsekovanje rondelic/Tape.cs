@@ -53,6 +53,8 @@
                     case "length":
                         if (this.length < 1 || this.length > 100000)
                             return "Dolžina ne sme presegati 100m.";
+                        if (this.length < this.width)
+                            return "Širina ne sme presegati dolžine.";
                         break;
                     case "width":
                         if (this.width < 1 || this.width > 10000)

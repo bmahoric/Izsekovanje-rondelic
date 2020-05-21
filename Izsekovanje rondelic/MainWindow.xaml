@@ -29,27 +29,27 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="800.8"/>
         </Grid.ColumnDefinitions>
-        <GroupBox Header="Podatki o traku - v mm" HorizontalAlignment="Left" Height="235" Margin="10,10,0,0" VerticalAlignment="Top" Width="268">
-            <StackPanel Margin="10,10,0.4,0.4" >
+        <GroupBox Header="Podatki o traku - v mm" HorizontalAlignment="Left" Height="253" Margin="10,10,0,0" VerticalAlignment="Top" Width="308">
+            <StackPanel Margin="10,10,-2,0.4" >
                 <Label Content="Dolžina" Target="{Binding ElementName=tb_Length}"/>
-                <TextBox x:Name="tb_Length" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" TextChanged="Length_TextChanged" Margin="10,0,0,0" Text="{Binding Path=length, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource CustomErrorControlOnErrorStyle}"/>
+                <TextBox x:Name="tb_Length" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" TextChanged="Length_TextChanged" Margin="10,0,0,5" Text="{Binding Path=length, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource CustomErrorControlOnErrorStyle}"/>
                 <Label Content="Širina" Target="{Binding ElementName=tb_Width}"/>
-                <TextBox x:Name="tb_Width" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Margin="10,0,0,0" Text="{Binding Path=width, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource CustomErrorControlOnErrorStyle}" TextChanged="tb_Width_TextChanged"/>
+                <TextBox x:Name="tb_Width" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Margin="10,0,0,5" Text="{Binding Path=width, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource CustomErrorControlOnErrorStyle}" TextChanged="tb_Width_TextChanged"/>
                 <Label Content="Odmik robov po dolžini" Target="{Binding ElementName=tb_xDistance}"/>
-                <TextBox x:Name="tb_xDistance" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Margin="10,0,0,0" Text="{Binding Path=xDistance, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource CustomErrorControlOnErrorStyle}" TextChanged="tb_xDistance_TextChanged"/>
+                <TextBox x:Name="tb_xDistance" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Margin="10,0,0,5" Text="{Binding Path=xDistance, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource CustomErrorControlOnErrorStyle}" TextChanged="tb_xDistance_TextChanged"/>
                 <Label Content="Odmik robov po širini" Target="{Binding ElementName=tb_yDistance}"/>
-                <TextBox x:Name="tb_yDistance" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Margin="10,0,0,0" Text="{Binding Path=yDistance, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource CustomErrorControlOnErrorStyle}" TextChanged="tb_yDistance_TextChanged" />
+                <TextBox x:Name="tb_yDistance" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="216" Margin="10,0,0,5" Text="{Binding Path=yDistance, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource CustomErrorControlOnErrorStyle}" TextChanged="tb_yDistance_TextChanged" />
             </StackPanel>
         </GroupBox>
-        <GroupBox Header="Podatki o rondelicah - v mm" HorizontalAlignment="Left" Height="132" Margin="10,250,0,0" VerticalAlignment="Top" Width="268">
-            <StackPanel Margin="10,10,0.4,0.4" >
+        <GroupBox Header="Podatki o rondelicah - v mm" HorizontalAlignment="Left" Height="145" Margin="10,268,0,0" VerticalAlignment="Top" Width="308">
+            <StackPanel Margin="10,10,0,0.4" >
                 <Label Content="Polmer" Target="{Binding ElementName=tb_R}"/>
-                <TextBox x:Name="tb_R" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Margin="10,0,0,0" Text="{Binding Path=r, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource CustomErrorControlOnErrorStyle}" TextChanged="tb_R_TextChanged" />
+                <TextBox x:Name="tb_R" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Margin="10,0,0,5" Text="{Binding Path=r, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource CustomErrorControlOnErrorStyle}" TextChanged="tb_R_TextChanged" />
                 <Label Content="Medsebojna razdalja" Target="{Binding ElementName=tb_xDistance}"/>
-                <TextBox x:Name="tb_CircleDistance" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Margin="10,0,0,0" Text="{Binding Path=distance, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource CustomErrorControlOnErrorStyle}" TextChanged="tb_CircleDistance_TextChanged" />
+                <TextBox x:Name="tb_CircleDistance" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="214" Margin="10,0,0,5" Text="{Binding Path=distance, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Style="{StaticResource CustomErrorControlOnErrorStyle}" TextChanged="tb_CircleDistance_TextChanged" />
             </StackPanel>
         </GroupBox>
-        <Button x:Name="button_Calculate" Content="Izračunaj" HorizontalAlignment="Left" Margin="34,394,0,0" VerticalAlignment="Top" Click="Button_Click" Width="70" Height="26"/>
+        <Button x:Name="button_Calculate" Content="Izračunaj" HorizontalAlignment="Left" Margin="34,432,0,0" VerticalAlignment="Top" Click="Button_Click" Width="70" Height="26"/>
         <StackPanel HorizontalAlignment="Left" Height="408" Margin="394,28,-147.4,0" VerticalAlignment="Top" Width="555">
             <Label Content="Število rondelic:" Margin="0,0,210.6,0"/>
             <TextBox x:Name="tb_Result" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="181" Margin="10,0,0,0" Focusable="False"/>
