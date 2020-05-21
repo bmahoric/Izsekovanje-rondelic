@@ -15,7 +15,6 @@ using System.Windows.Shapes;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
-using System.ComponentModel;
 
 namespace Izsekovanje_rondelic
 {
@@ -32,15 +31,13 @@ namespace Izsekovanje_rondelic
 
             ConfigureNlog();
 
-            tb_Width.Text = "50".ToString();
-            tb_Length.Text = "100".ToString();
-            tb_xDistance.Text = "0".ToString();
-            tb_yDistance.Text = "0".ToString();
-
-            tb_R.Text = "5".ToString();
-            tb_CircleDistance.Text = "4".ToString();
+            DataContext = new Tape();
         }
 
+        /*
+         * Konfiguracija NLoga
+         */
+        // TODO: potrebno prestaviti v config datoteko
         private void ConfigureNlog()
         {
             var config = new LoggingConfiguration();
@@ -54,11 +51,6 @@ namespace Izsekovanje_rondelic
             LogManager.Configuration = config;
         }
 
-        private void Length_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -68,16 +60,12 @@ namespace Izsekovanje_rondelic
                 trak.length = int.Parse(tb_Length.Text);
                 trak.xDistance = int.Parse(tb_xDistance.Text);
                 trak.yDistance = int.Parse(tb_yDistance.Text);
-
-                tb_Area.Text = trak.GetArea().ToString();
-                tb_netArea.Text = trak.GetNetArea().ToString();
+                trak.r = int.Parse(tb_R.Text);
+                trak.distance = int.Parse(tb_CircleDistance.Text);
 
                 CalcRounds calc = new CalcRounds();
-                calc.r = int.Parse(tb_R.Text);
-                calc.distance = int.Parse(tb_CircleDistance.Text);
-
+                // izpis rezultatov
                 tb_Result.Text = calc.GetNoOfRounds(trak).ToString();
-                
                 textblock.Text = calc.PrintRoundLocations(trak);
             }
             catch (Exception ex)
@@ -86,14 +74,40 @@ namespace Izsekovanje_rondelic
             }
         }
 
-        private bool isPositive(string s)
+        private void tb_yDistance_TextChanged(object sender, TextChangedEventArgs e)
         {
-            int n;
-            int.TryParse(s, out n);
-            if (n > 0)
-                return true;
-            else
-                return false;
+            TextBox tb = sender as TextBox;
+            button_Calculate.IsEnabled = Validation.GetHasError(tb) == true ? false : true;
+        }
+
+        private void tb_xDistance_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            button_Calculate.IsEnabled = Validation.GetHasError(tb) == true ? false : true;
+        }
+
+        private void Length_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            button_Calculate.IsEnabled = Validation.GetHasError(tb) == true ? false : true;
+        }
+
+        private void tb_Width_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            button_Calculate.IsEnabled = Validation.GetHasError(tb) == true ? false : true;
+        }
+
+        private void tb_R_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            button_Calculate.IsEnabled = Validation.GetHasError(tb) == true ? false : true;
+        }
+
+        private void tb_CircleDistance_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            button_Calculate.IsEnabled = Validation.GetHasError(tb) == true ? false : true;
         }
     }
 }
