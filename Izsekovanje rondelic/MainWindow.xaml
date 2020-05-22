@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Izsekovanje_rondelic"
         mc:Ignorable="d"
-        Title="Izdelava rondelic - prototip aplikacije za razpis za programerja" Height="{Binding ElementName=grid1, Path=Height}" Width="965.714" WindowStartupLocation="CenterScreen">
+        Title="Izdelava rondelic - prototip aplikacije za razpis za programerja" Height="{Binding ElementName=grid1, Path=Height}" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="DefaultTextBoxStyle" TargetType="TextBox">
             <Setter Property="Margin" Value="5" />
@@ -27,7 +27,7 @@
     </Window.Resources>
     <Grid x:Name="grid1">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="800.8"/>
+            <ColumnDefinition Width="803.2"/>
         </Grid.ColumnDefinitions>
         <GroupBox Header="Podatki o traku - v mm" HorizontalAlignment="Left" Height="253" Margin="10,10,0,0" VerticalAlignment="Top" Width="308">
             <StackPanel Margin="10,10,-2,0.4" >
@@ -50,12 +50,13 @@
             </StackPanel>
         </GroupBox>
         <Button x:Name="button_Calculate" Content="Izračunaj" HorizontalAlignment="Left" Margin="34,432,0,0" VerticalAlignment="Top" Click="Button_Click" Width="70" Height="26"/>
-        <StackPanel HorizontalAlignment="Left" Height="408" Margin="394,28,-147.4,0" VerticalAlignment="Top" Width="555">
+        <StackPanel HorizontalAlignment="Left" Height="458" Margin="376,38,-145.8,0" VerticalAlignment="Top" Width="573">
             <Label Content="Število rondelic:" Margin="0,0,210.6,0"/>
             <TextBox x:Name="tb_Result" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="181" Margin="10,0,0,0" Focusable="False"/>
             <Label Content="Koordinate rondelic - X,Y os:" HorizontalAlignment="Left" VerticalAlignment="Top" Width="171"/>
-            <TextBlock x:Name="textblock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="331" Width="545" Margin="10,0,0,0"/>
+            <TextBlock x:Name="textblock" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="375" Width="545" Margin="10,0,0,0"/>
         </StackPanel>
+        <StackPanel HorizontalAlignment="Left" Height="486" Margin="346,10,0,0" VerticalAlignment="Top" Width="1" Background="#FEEEEDED"/>
 
     </Grid>
 </Window>

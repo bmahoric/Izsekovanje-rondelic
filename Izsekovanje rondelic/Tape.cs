@@ -1,6 +1,6 @@
 ﻿namespace Izsekovanje_rondelic
 {
-    class Tape : System.ComponentModel.IDataErrorInfo
+    public class Tape : System.ComponentModel.IDataErrorInfo
     {
         public int width { get; set; }
         public int length { get; set; }
@@ -11,12 +11,22 @@
 
         public Tape()
         {
-            this.width = 200;
-            this.length = 500;
-            this.xDistance = 10;
-            this.yDistance = 10;
-            this.r = 25;
-            this.distance = 5;
+            width = 200;
+            length = 500;
+            xDistance = 10;
+            yDistance = 10;
+            r = 25;
+            distance = 5;
+        }
+
+        public Tape(int _length, int _width, int _xDistance, int _yDistance, int _r, int _distance)
+        {
+            width = _width;
+            length = _length;
+            xDistance = _xDistance;
+            yDistance = _yDistance;
+            r = _r;
+            distance = _distance;
         }
 
         public int GetArea()

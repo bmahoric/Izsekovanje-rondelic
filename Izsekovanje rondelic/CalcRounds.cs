@@ -2,17 +2,13 @@
 
 namespace Izsekovanje_rondelic
 {
-    class CalcRounds
+    public class CalcRounds
     {
-        private int noOfRoundsInOddRows { get; set; }
-        private int noOfRoundsInEvenRows { get; set; }
-        private int noOfRows { get; set; }
-        
         public int GetNoOfRounds(Tape trak)
         {
-            noOfRoundsInOddRows = CalcRoundsInCols(trak, true);
-            noOfRoundsInEvenRows = CalcRoundsInCols(trak, false);
-            noOfRows = CalcNoOfRows(trak);
+            int noOfRoundsInOddRows = CalcRoundsInRows(trak, true);
+            int noOfRoundsInEvenRows = CalcRoundsInRows(trak, false);
+            int noOfRows = CalcNoOfRows(trak);
 
             int noOfEvenRows = noOfRows / 2;
             int noOfOddRows = (noOfRows % 2) + noOfEvenRows; 
@@ -22,9 +18,9 @@ namespace Izsekovanje_rondelic
 
         public string PrintRoundLocations(Tape trak)
         {
-            noOfRoundsInOddRows = CalcRoundsInCols(trak, true);
-            noOfRoundsInEvenRows = CalcRoundsInCols(trak, false);
-            noOfRows = CalcNoOfRows(trak);
+            int noOfRoundsInOddRows = CalcRoundsInRows(trak, true);
+            int noOfRoundsInEvenRows = CalcRoundsInRows(trak, false);
+            int noOfRows = CalcNoOfRows(trak);
 
             int noOfEvenRows = noOfRows / 2;
             int noOfOddRows = (noOfRows % 2) + noOfEvenRows;
@@ -75,7 +71,7 @@ namespace Izsekovanje_rondelic
         /*
          * Prešteje število rondelic v vrsticah - sodih oz. lihih
          */
-        private int CalcRoundsInCols(Tape trak, bool isOdd)
+        private int CalcRoundsInRows(Tape trak, bool isOdd)
         {
             int noOfRounds;
 

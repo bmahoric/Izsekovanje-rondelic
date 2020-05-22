@@ -55,14 +55,14 @@ namespace Izsekovanje_rondelic
         {
             try
             {
-                Tape trak = new Tape();
-                trak.width = int.Parse(tb_Width.Text);
-                trak.length = int.Parse(tb_Length.Text);
-                trak.xDistance = int.Parse(tb_xDistance.Text);
-                trak.yDistance = int.Parse(tb_yDistance.Text);
-                trak.r = int.Parse(tb_R.Text);
-                trak.distance = int.Parse(tb_CircleDistance.Text);
-
+                int length = int.Parse(tb_Length.Text);
+                int width = int.Parse(tb_Width.Text);
+                int xDist = int.Parse(tb_xDistance.Text);
+                int yDist = int.Parse(tb_yDistance.Text);
+                int r = int.Parse(tb_R.Text);
+                int distance = int.Parse(tb_CircleDistance.Text);
+                Tape trak = new Tape(length, width, xDist, yDist, r, distance);
+                
                 CalcRounds calc = new CalcRounds();
                 // izpis rezultatov
                 tb_Result.Text = calc.GetNoOfRounds(trak).ToString();
