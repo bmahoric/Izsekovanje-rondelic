@@ -39,25 +39,10 @@ namespace Izsekovanje_rondelic
 
         private int CalcNoOfRows()
         {
-            int b = CalcTriangular_B_leg();
+            TriangularCalcHelper calcHelper = new TriangularCalcHelper(_Round);
+            int b = calcHelper.CalcB_leg();
 
             return ((_Tape.NetWidth + (b - (2 * _Round.R))) / b);
-        }
-
-        /*
-         * Izračun katete pravokotnega trikotnika za rezultat odmika sodih vrstic.
-         */
-        private int CalcTriangular_B_leg()
-        {
-            double a;
-            double b;
-            double c;
-
-            a = _Round.R + (_Round.Distance / 2);
-            c = (2 * _Round.R) + _Round.Distance;
-            b = Math.Sqrt(Math.Pow(c, 2) - Math.Pow(a, 2));
-
-            return Convert.ToInt32(b);   // TODO: potrebno preveriti kaj naredimo z double!
         }
 
         public string PrintRoundLocations()
@@ -66,7 +51,8 @@ namespace Izsekovanje_rondelic
             int noOfRoundsInEvenRows = CalcRoundsInEvenRows();
             int noOfRows = CalcNoOfRows();
 
-            int kateta = CalcTriangular_B_leg();
+            TriangularCalcHelper calcHelper = new TriangularCalcHelper(_Round);
+            int kateta = calcHelper.CalcB_leg();
             string rounds = "";
 
             for (int a = 0; a < noOfRows; a++)
