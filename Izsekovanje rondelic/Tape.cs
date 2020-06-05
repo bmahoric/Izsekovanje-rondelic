@@ -1,53 +1,36 @@
-﻿namespace Izsekovanje_rondelic
+﻿using System.ComponentModel;
+
+namespace Izsekovanje_rondelic
 {
-    public class Tape : System.ComponentModel.IDataErrorInfo
+    public class Tape : IShape, IDataErrorInfo
     {
-        public int width { get; set; }
-        public int length { get; set; }
-        public int xDistance { get; set; }
-        public int yDistance { get; set; }
-        public int r { get; set; }
-        public int distance { get; set; }
+        public int Width { get; set; }
+        public int Length { get; set; }
+        public int XDistance { get; set; }
+        public int YDistance { get; set; }
 
-        public Tape()
-        {
-            width = 200;
-            length = 500;
-            xDistance = 10;
-            yDistance = 10;
-            r = 25;
-            distance = 5;
+        public Tape() {
         }
 
-        public Tape(int _length, int _width, int _xDistance, int _yDistance, int _r, int _distance)
+        public Tape(int length, int width, int xDistance, int yDistance)
         {
-            width = _width;
-            length = _length;
-            xDistance = _xDistance;
-            yDistance = _yDistance;
-            r = _r;
-            distance = _distance;
+            Width = width;
+            Length = length;
+            XDistance = xDistance;
+            YDistance = yDistance;
         }
 
-        public int GetArea()
-        {
-            return width * length;
-        }
+        public int Area =>
+            Width * Length;
 
-        public int GetNetArea()
-        {
-            return (width - 2 * yDistance) * (length - 2 * xDistance);
-        }
+        public int NetArea =>
+            (Width - 2 * YDistance) * (Length - 2 * XDistance);
 
-        public int NetWidth()
-        {
-            return width - 2 * yDistance;
-        }
+        public int NetWidth =>
+            Width - 2 * YDistance;
 
-        public int NetLength()
-        {
-            return length - 2 * xDistance;
-        }
+        public int NetLength =>
+            Length - 2 * XDistance;
 
         public string Error
         {
@@ -60,33 +43,25 @@
             {
                 switch (columnName)
                 {
-                    case "length":
-                        if (this.length < 1 || this.length > 100000)
-                            return "Dolžina ne sme presegati 100m.";
-                        if (this.length < this.width)
+                    case "Length":
+                        if (this.Length < 0 || this.Length > 100000)
+                            return "Dolžina mora biti pozitivna in ne presegati 100m.";
+                        if (this.Length < this.Width)
                             return "Širina ne sme presegati dolžine.";
                         break;
-                    case "width":
-                        if (this.width < 1 || this.width > 10000)
-                            return "Širina ne sme presegati 10m.";
-                        if (this.width > this.length)
+                    case "Width":
+                        if (this.Width < 0 || this.Width > 10000)
+                            return "Širina mora biti pozitivna in ne sme presegati 10m.";
+                        if (this.Width > this.Length)
                             return "Širina ne sme presegati dolžine.";
                         break;
-                    case "xDistance":
-                        if (this.xDistance < 1 || this.xDistance > this.length / 5)
+                    case "XDistance":
+                        if (this.XDistance < 0 || this.XDistance > this.Length / 5)
                             return "Najmanj 1mm in max 20% dolžine traku.";
                         break;
-                    case "yDistance":
-                        if (this.yDistance < 1 || this.yDistance > this.width / 5)
+                    case "YDistance":
+                        if (this.YDistance < 0 || this.YDistance > this.Width / 5)
                             return "Najmanj 1mm in max 20% širine traku.";
-                        break;
-                    case "r":
-                        if (this.r < 1 || this.r > (this.width - this.yDistance*2) / 2)
-                            return "Najmanj 1mm in max polovica širine traku, upoštevajoč robove.";
-                        break;
-                    case "distance":
-                        if (this.distance < 1)
-                            return "Najmanj 1mm.";
                         break;
                 }
                 return string.Empty;

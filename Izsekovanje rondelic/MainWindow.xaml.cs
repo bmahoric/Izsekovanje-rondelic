@@ -23,15 +23,44 @@ namespace Izsekovanje_rondelic
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        public static Logger logger = LogManager.GetCurrentClassLogger();
 
         public MainWindow()
         {
-            InitializeComponent();
-
             ConfigureNlog();
+            DataContext = new ViewModel();
+            InitializeComponent();
+        }
 
-            DataContext = new Tape();
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int length = int.Parse(tb_Length.Text);
+                int width = int.Parse(tb_Width.Text);
+                int xDist = int.Parse(tb_xDistance.Text);
+                int yDist = int.Parse(tb_yDistance.Text);
+                int r = int.Parse(tb_R.Text);
+                int distance = int.Parse(tb_CircleDistance.Text);
+
+                Tape trak = new Tape(length, width, xDist, yDist);
+                Round rondelica = new Round(r, distance);
+
+                IRoundsPattern roundsPattern = new TriangularRoundsPattern(trak, rondelica);
+
+                tb_Result.Text = roundsPattern.CalcNoOfRounds().ToString();
+                textblock.Text = roundsPattern.PrintRoundLocations();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Napaka: " + ex.Message);
+            }
+        }
+
+        private void tb_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox tb = sender as TextBox;
+            button_Calculate.IsEnabled = Validation.GetHasError(tb) == true ? false : true;
         }
 
         /*
@@ -49,65 +78,6 @@ namespace Izsekovanje_rondelic
             };
             config.AddRule(LogLevel.Debug, LogLevel.Fatal, fileTarget, "*");
             LogManager.Configuration = config;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                int length = int.Parse(tb_Length.Text);
-                int width = int.Parse(tb_Width.Text);
-                int xDist = int.Parse(tb_xDistance.Text);
-                int yDist = int.Parse(tb_yDistance.Text);
-                int r = int.Parse(tb_R.Text);
-                int distance = int.Parse(tb_CircleDistance.Text);
-                Tape trak = new Tape(length, width, xDist, yDist, r, distance);
-                
-                CalcRounds calc = new CalcRounds();
-                // izpis rezultatov
-                tb_Result.Text = calc.GetNoOfRounds(trak).ToString();
-                textblock.Text = calc.PrintRoundLocations(trak);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex, "Napaka: "+ex.Message);
-            }
-        }
-
-        private void tb_yDistance_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            TextBox tb = sender as TextBox;
-            button_Calculate.IsEnabled = Validation.GetHasError(tb) == true ? false : true;
-        }
-
-        private void tb_xDistance_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            TextBox tb = sender as TextBox;
-            button_Calculate.IsEnabled = Validation.GetHasError(tb) == true ? false : true;
-        }
-
-        private void Length_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            TextBox tb = sender as TextBox;
-            button_Calculate.IsEnabled = Validation.GetHasError(tb) == true ? false : true;
-        }
-
-        private void tb_Width_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            TextBox tb = sender as TextBox;
-            button_Calculate.IsEnabled = Validation.GetHasError(tb) == true ? false : true;
-        }
-
-        private void tb_R_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            TextBox tb = sender as TextBox;
-            button_Calculate.IsEnabled = Validation.GetHasError(tb) == true ? false : true;
-        }
-
-        private void tb_CircleDistance_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            TextBox tb = sender as TextBox;
-            button_Calculate.IsEnabled = Validation.GetHasError(tb) == true ? false : true;
         }
     }
 }

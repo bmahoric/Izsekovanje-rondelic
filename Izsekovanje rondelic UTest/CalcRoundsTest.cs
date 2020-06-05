@@ -11,9 +11,10 @@ namespace Izsekovanje_rondelic_UTest
         [TestMethod]
         public void Test_GetNoOfRounds1()
         {
-            Tape trak = new Tape(100, 40, 1, 1, 5, 4);
-            CalcRounds calc = new CalcRounds();
-            int calcResult = calc.GetNoOfRounds(trak);
+            Tape trak = new Tape(100, 40, 1, 1);
+            Round rondelica = new Round(5, 4);
+            IRoundsPattern calc = new TriangularRoundsPattern(trak, rondelica);
+            int calcResult = calc.CalcNoOfRounds();
 
             Assert.AreEqual(20, calcResult);
         }
@@ -21,9 +22,10 @@ namespace Izsekovanje_rondelic_UTest
         [TestMethod]
         public void Test_GetNoOfRounds2()
         {
-            Tape trak = new Tape(100, 15, 1, 1, 6, 1);
-            CalcRounds calc = new CalcRounds();
-            int calcResult = calc.GetNoOfRounds(trak);
+            Tape trak = new Tape(100, 15, 1, 1);
+            Round rondelica = new Round(8, 2);
+            IRoundsPattern calc = new TriangularRoundsPattern(trak, rondelica);
+            int calcResult = calc.CalcNoOfRounds();
 
             Assert.AreEqual(7, calcResult);
         }
