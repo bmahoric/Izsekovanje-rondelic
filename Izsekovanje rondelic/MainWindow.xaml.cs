@@ -28,8 +28,8 @@ namespace Izsekovanje_rondelic
         public MainWindow()
         {
             ConfigureNlog();
-            DataContext = new ViewModel();
             InitializeComponent();
+            DataContext = new ViewModel();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
